@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
+import GraphItem from "./GraphItem";
 
 const Home = () => {
   // calling the endpoint
-
+  const [val, setVal] = useState('')
   const data = async () => {
     const response = await fetch("http://localhost:5000/module/getdbdata", {
       method: "POST",
@@ -18,6 +19,7 @@ const Home = () => {
 
   const line = (json)=>{
     let d = [];
+    console.log(json);
     d.push(json);
       let line = d.map((e) => {
         let a = [];
@@ -26,21 +28,25 @@ const Home = () => {
         }
         return a;
       });
-      let obj = {};
+      // let obj = {};
       let values = [];
       console.log(line[0]);
       for(let i=0;i<line[0].length;i++){
         values.push(Object.values(line[0][i]));
       };
-      console.log(values);
+      setVal(values);
       // console.log(Object.keys(obj).length)
       // Object.entries(obj)
   }
 
   useEffect(() => {
     data();
+  // eslint-disable-next-line 
   }, []);
-  return <div className="container">Home Graph</div>;
+  return (<div className="container">
+    Home Graph
+    <GraphItem value={val} date={new Date("08-24-2022")} />
+  </div>);
 };
 
 export default Home;
