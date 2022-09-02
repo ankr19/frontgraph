@@ -20,6 +20,11 @@ const Home = () => {
   const line = (json)=>{
     let d = [];
     console.log(json);
+    let date = [];
+    for(let i in json){
+      date.push(json[i]['timestamp']);
+    }
+    console.log(date);
     d.push(json);
       let line = d.map((e) => {
         let a = [];
@@ -30,7 +35,7 @@ const Home = () => {
       });
       // let obj = {};
       let values = [];
-      console.log(line[0]);
+      // console.log(line[0]);
       for(let i=0;i<line[0].length;i++){
         values.push(Object.values(line[0][i]));
       };

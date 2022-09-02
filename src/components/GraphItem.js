@@ -2,23 +2,35 @@ import React from "react";
 import Plot from "react-plotly.js";
 const GraphItem = (props) => {
   const { value, date } = props;
-
-  let d = new Array(value[0].length).fill(date);
-
+  // let a = [1, 2, 3, 4, 2, 3,2 ,12, 23,2, 3];
+  // console.log(a);
+  let d = [];
+  // d.push(Object.values(value[0]));
+  for(let i in value[0])
+  {
+    d.push(value[0][i]);
+  }
+  //let obj = JSON.parse(JSON.stringify(d));
+  //console.log(obj);
+  //d = new Array(d[0])
+  // d = new Array().length).fill(date);
+  // d = new Array((d).length).fill(date);
+  let dates = new Array(d.length).fill(date)
+  // console.log(dates);
   return (
     <div>
       <Plot
         data={[
           {
-            x: value[0],
-            y: d,
+            x: dates,
+            y: value[0],
             type: "scatter",
             mode: "lines+markers",
             marker: { color: "red" },
           },
           {
-            x: value[1],
-            y: d,
+            x: dates,
+            y: value[1],
             type: "scatter",
             mode: "lines+markers",
             marker: { color: "green" },
@@ -41,4 +53,5 @@ export default GraphItem;
 //             type: 'scatter',
 //             mode: 'lines+markers',
 //             marker: {color: 'red'},
-//           },
+//   },
+//
