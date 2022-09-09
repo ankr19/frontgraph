@@ -13,8 +13,10 @@ const Graph = () => {
   return (
     <div>
       <Stack spacing={2} direction="row">
-        <Button style={{fontSize:"15px",border:"2px solid blue"}}>
-          <Link to="/" style={{color:"blue"}}>Home</Link>
+        <Button style={{ fontSize: "15px", border: "2px solid blue" }}>
+          <Link to="/" style={{ color: "blue" }}>
+            Home
+          </Link>
         </Button>
       </Stack>
       <GraphItem2

@@ -1,58 +1,95 @@
 const revdc = (d) => {
-  let vdc = [];
-  for (let i = 0; i < 10; i++) {
-    let sp = "vdc" + (i + 1);
-    vdc.push(parseInt(d[0][sp]));
+  let sum = 0;
+  let avgv = [];
+
+  for (let i in d) {
+    sum = 0;
+    for (let j = 1; j <= 10; j++) {
+      let sp = "vdc" + j;
+      sum = parseInt(d[i][sp]);
+    }
+    avgv.push(sum / 10);
   }
-  return vdc;
+  return avgv;
 };
+
 const reidc = (d) => {
-  let idc = [];
-  for (let i = 0; i < 10; i++) {
-    let sp = "idc" + (i + 1);
-    idc.push(parseInt(d[0][sp]));
+  let sum = 0;
+  let avgi = [];
+  for (let i in d) {
+    sum = 0;
+    for (let j = 1; j <= 10; j++) {
+      let sp = "idc" +j;
+      sum = parseInt(d[i][sp]);
+    }
+    avgi.push(sum/10);
   }
-  return idc;
+  return avgi;
 };
+
+
 const reidref = (d) => {
-  let idref = [];
-  for (let i = 0; i < 10; i++) {
-    let sp = "idref" + (i + 1);
-    idref.push(parseInt(d[0][sp]));
+  let sum = 0;
+  let avgid = [];
+  for (let i in d) {
+    sum = 0;
+    for (let j = 1; j <= 10; j++) {
+      let sp = "idref" + j ;
+      sum = parseInt(d[i][sp]);
+    }
+    avgid.push(sum);
   }
-  return idref;
+  return avgid;
 };
+
 const rerpm = (d) => {
-  let rpm = [];
-  for (let i = 0; i < 10; i++) {
-    let sp = "rpm" + (i + 1);
-    rpm.push(parseInt(d[0][sp]));
+  let sum = 0;
+  let avgr = [];
+  for (let i in d) {
+    sum = 0;
+    for (let j = 1; j <= 10; j++) {
+      let sp = "rpm" + j;
+      sum = parseInt(d[i][sp]);
+    }
+    avgr.push(sum);
   }
-  return rpm;
+  return avgr;
 };
 const retesc = (d) => {
-  let tesc = [];
-  for (let i = 0; i < 10; i++) {
-    let sp = "tesc" + (i + 1);
-    tesc.push(parseInt(d[0][sp]));
+  let sum = 0;
+  let avgte = [];
+  for (let i in d) {
+    sum = 0;
+    for (let j = 1; j <= 10; j++) {
+      let sp = "tesc" + j;
+      sum = parseInt(d[i][sp]);
+    }
+    avgte.push(sum);
   }
-  return tesc;
+  return avgte;
 };
 const retomt = (d) => {
-  let tmot = [];
-  for (let i = 0; i < 10; i++) {
-    let sp = "tmot" + (i + 1);
-    tmot.push(parseInt(d[0][sp]));
+  let sum = 0;
+  let avgtm = [];
+  for (let i in d) {
+    sum = 0;
+    for (let j = 1; j <= 10; j++) {
+      let sp = "tmot" + j;
+      sum = parseInt(d[i][sp]);
+    }
+    avgtm.push(sum);
   }
-  return tmot;
+  return avgtm;
 };
 
 const retime = (d) => {
-  let sec = "" + d[0].Time;
-  sec = sec.slice(sec.length - 2, sec.length);
-
-  sec = sec.slice(sec.length - 2, sec.length);
-  return new Array(10).fill(parseInt(sec));
+  let time = [];
+  for(let i in d){
+    let sec = "" + d[i]['Time'];
+    sec = sec.slice(sec.length-2, sec.length)
+    time.push(parseInt(sec));
+  }
+  return time;
 };
 
 module.exports = { revdc, retime, reidc, reidref, rerpm, retesc, retomt };

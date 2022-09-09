@@ -7,19 +7,21 @@ const GraphItem2 = (props) => {
       <Plot
         data={[
           {
-            x: time,
-            y: vdc,
+            x: vdc,
+            y: time,
             xaxis: "x1",
             yaxis: "y1",
             type: "scatter",
+            mode: "lines+markers",
             marker: { color: "orange" },
           },
           {
-            x: time,
-            y: idc,
+            x: idc,
+            y: time,
             xaxis: "x2",
             yaxis: "y2",
             type: "scatter",
+            mode: "lines+markers",
             marker: { color: "red" },
           },
           {
@@ -28,6 +30,7 @@ const GraphItem2 = (props) => {
             xaxis: "x3",
             yaxis: "y3",
             type: "scatter",
+            mode: "lines+markers",
             marker: { color: "pink" },
           },
           {
@@ -36,7 +39,9 @@ const GraphItem2 = (props) => {
             xaxis: "x4",
             yaxis: "y4",
             type: "scatter",
+            mode: "lines+markers",
             marker: { color: "yellow" },
+            title: { text: "rpm" },
           },
           {
             x: time,
@@ -44,6 +49,7 @@ const GraphItem2 = (props) => {
             xaxis: "x5",
             yaxis: "y5",
             type: "scatter",
+            mode: "lines+markers",
             marker: { color: "blue" },
           },
           {
@@ -51,6 +57,7 @@ const GraphItem2 = (props) => {
             y: tmot,
             xaxis: "x6",
             yaxis: "y6",
+            mode: "lines+markers",
             type: "scatter",
             marker: { color: "green" },
           },

@@ -57,3 +57,16 @@ if (data) {
           <Link to="graph" style={{color:"blue"}}>Graph</Link>
         </Button>
       </Stack>
+
+
+
+for (let i = 0; i < 10; i++) {
+  let sp = "vdc" + (i + 1);
+  vdc.push(parseInt(d[0][sp]));
+}let vdc = [];
+
+let sec = "" + d[0].Time;
+  sec = sec.slice(sec.length - 2, sec.length);
+
+  sec = sec.slice(sec.length - 2, sec.length);
+  return new Array(10).fill(parseInt(sec));
