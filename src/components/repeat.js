@@ -92,4 +92,32 @@ const retime = (d) => {
   return time;
 };
 
-module.exports = { revdc, retime, reidc, reidref, rerpm, retesc, retomt };
+
+const newData = (id, d)=>{
+  // console.log(id)
+  // console.log(d)
+  let count =0;
+  for(let i in d){
+    d[i]['id']=id[count];
+    if(count<=id.length){
+      count++;
+    }
+  }
+ return d;
+  // console.log(d[0]['id']=id[0]);
+  // console.log(d[0]);
+  // let count = 0;
+  // // console.log(d)
+  // let data = []
+  // for(let i in d){
+  //   d[i]["id"]=id[count];
+  //   let obj = Object(d);
+  //   data.push(obj)
+  //   if(count<=id.length){
+  //     count++;
+  //   }
+  // }
+  // return data;
+}
+
+module.exports = { revdc, retime, reidc, reidref, rerpm, retesc, retomt, newData };
