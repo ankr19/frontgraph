@@ -3,12 +3,12 @@ import Plot from "react-plotly.js";
 const GraphItem2 = (props) => {
   const { time, vdc, idc, idref, rpm, tesc, tmot } = props;
   return (
-    <div>
+    <div className="text-center">
       <Plot
         data={[
           {
-            x: vdc,
-            y: time,
+            x: time,
+            y: vdc,
             xaxis: "x1",
             yaxis: "y1",
             type: "scatter",
@@ -17,8 +17,8 @@ const GraphItem2 = (props) => {
             marker: { color: "orange" },
           },
           {
-            x: idc,
-            y: time,
+            x: time,
+            y: idc,
             xaxis: "x2",
             yaxis: "y2",
             type: "scatter",
@@ -27,8 +27,8 @@ const GraphItem2 = (props) => {
             name:"idc",
           },
           {
-            x: idref,
-            y: time,
+            x: time,
+            y: idref,
             xaxis: "x3",
             yaxis: "y3",
             type: "scatter",
@@ -37,8 +37,8 @@ const GraphItem2 = (props) => {
             name:"idref",
           },
           {
-            x: rpm,
-            y: time,
+            x: time,
+            y: rpm,
             xaxis: "x4",
             yaxis: "y4",
             type: "scatter",
@@ -47,8 +47,8 @@ const GraphItem2 = (props) => {
             name: "rpm",
           },
           {
-            x: tesc,
-            y: time,
+            x: time,
+            y: tesc,
             xaxis: "x5",
             yaxis: "y5",
             type: "scatter",
@@ -57,8 +57,8 @@ const GraphItem2 = (props) => {
             name:"tesc",
           },
           {
-            x: tmot,
-            y: time,
+            x:time,
+            y:tmot,
             xaxis: "x6",
             yaxis: "y6",
             mode: "lines+markers",
@@ -72,18 +72,18 @@ const GraphItem2 = (props) => {
           title: { text: "Figure 1" },
           width: 900,
           height: 800,
-          xaxis1:{title:"data(vdc)"},
-          yaxis1:{title:"time"},
-          xaxis2:{title:"data(idc)"},
-          yaxis2:{title:"time"},
-          xaxis3:{title:"data(idref)"},
-          yaxis3:{title:"time"},
-          xaxis4:{title:"data(rpm)"},
-          yaxis4:{title:"time"},
-          xaxis5:{title:"data(tesc)"},
-          yaxis5:{title:"time"},
-          xaxis6:{title:"data(tmot)"},
-          yaxis6:{title:"time"},
+          xaxis1:{title:"time"},
+          yaxis1:{title:"data(vdc)"},
+          xaxis2:{title:"time"},
+          yaxis2:{title:"data(idc)"},
+          xaxis3:{title:"time"},
+          yaxis3:{title:"data(idref)"},
+          xaxis4:{title:"time"},
+          yaxis4:{title:"data(rpm)"},
+          xaxis5:{title:"time"},
+          yaxis5:{title:"data(tesc)"},
+          xaxis6:{title:"time"},
+          yaxis6:{title:"data(tmot)"},
         }}
       />
     </div>
