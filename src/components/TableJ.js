@@ -2,8 +2,8 @@ import { Button, Stack } from "@mui/material";
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import GraphContext from "../context/GraphContext";
-import TableItem from "./TableItem";
 import TableItem2 from "./TableItem2";
+import TableItem3 from "./TableItem3";
 import './tablej.css'
 const TableJ = () => {
   const context = useContext(GraphContext);
@@ -18,8 +18,8 @@ const TableJ = () => {
           <Link to="/" style={{color:"blue"}}>Home</Link>
         </Button>
       </Stack>
-      {/* <TableItem/> */}
-      <TableItem2/>
+      {/* <TableItem2/> */}
+      <TableItem3/>
     </div>
   );
 };

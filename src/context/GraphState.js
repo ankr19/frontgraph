@@ -3,6 +3,7 @@ import { useState } from "react";
 import GraphContext from "./GraphContext";
 import {
   newData,
+  newObj,
   reidc,
   reidref,
   rerpm,
@@ -38,7 +39,7 @@ const GraphState = (props) => {
         id.push(json[i].ID);
       }
       setID(id);
-      setData(newData(id,d));
+      // setData(newData(id, d));
       // setData(newData(id,d))
       // setData(d);
       setVdc(revdc(d));
@@ -48,12 +49,13 @@ const GraphState = (props) => {
       setRpm(rerpm(d));
       setTesc(retesc(d));
       setTime(retime(d));
+      setData(newObj(d,id));
     }
-    
-  };console.log(data)
+    console.log(data);
+  };
   return (
     <GraphContext.Provider
-      value={{ dataset, data, vdc, time, idc, idref, rpm, tesc, tmot}}
+      value={{ dataset, data, vdc, time, idc, idref, rpm, tesc, tmot }}
     >
       {props.children}
     </GraphContext.Provider>
