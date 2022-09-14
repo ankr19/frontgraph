@@ -139,8 +139,10 @@ const newObj = (d,id)=>{
   let date = redate(d);
   let obj = {}
   let data = [];
-  for(let i in date){
-    obj['id']=id[i];
+  console.log(id);
+  for(let i=0; i<date.length;i++){
+    obj = {}
+    obj['id']=parseInt(id[i]);
     // console.log(obj["id"])
     obj['date']=date[i];
     obj['time']=time[i];
@@ -151,6 +153,7 @@ const newObj = (d,id)=>{
     obj['tesc']=tesc[i];
     obj['tmot']=tmot[i];
     obj = Object(obj);
+    console.log(obj);
     data.push(obj);
   }
   // console.log(data);

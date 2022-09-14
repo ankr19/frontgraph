@@ -36,7 +36,7 @@ const GraphState = (props) => {
       let id = [];
       for (let i in json) {
         d.push(json[i].data[0]);
-        id.push(json[i].ID);
+        id.push(parseInt(json[i].ID));
       }
       setID(id);
       // setData(newData(id, d));
