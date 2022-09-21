@@ -7,8 +7,8 @@ const TableItem3 = () => {
   const { data } = context;
   const columns = [
     { field: "id", headerName: "ID", width: 50 },
-    { field: "date", headerName: "Date", width: 70 },
-    { field: "time", headerName: "time", width: 70 },
+    { field: "date", headerName: "Date", width: 250 },
+    // { field: "time", headerName: "time", width: 70 },
     { field: "idc", headerName: "idc", width: 70 },
     { field: "vdc", headerName: "vdc", width: 70 },
     { field: "idref", headerName: "idref", width: 70 },

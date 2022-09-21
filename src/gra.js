@@ -70,3 +70,24 @@ let sec = "" + d[0].Time;
 
   sec = sec.slice(sec.length - 2, sec.length);
   return new Array(10).fill(parseInt(sec));
+
+
+  date = date.replace("/", "-");
+    date = date.replace("/", "-");
+    // date = date.replace("9", "09");
+    date = date.replace("3", "2");
+    time = time.replace("45", "23");
+    console.log(date);
+    let da = new Date();
+    console.log(date, time);
+    let month = parseInt(
+      date.slice(date.indexOf("-") + 2, date.indexOf("-") + 3)
+    );
+    da.setMonth(month);
+    console.log();
+    da.setMinutes(37);
+    console.log(da.getMonth(), da.getMinutes());
+    console.log(Date());
+
+
+    

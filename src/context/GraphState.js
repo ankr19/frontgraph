@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import GraphContext from "./GraphContext";
 import {
+  maketime,
   newData,
   newObj,
   reidc,
@@ -23,6 +24,7 @@ const GraphState = (props) => {
   const [tmot, setTmot] = useState([]);
   const [tesc, setTesc] = useState([]);
   const [time, setTime] = useState([]);
+  
   const dataset = async () => {
     const response = await fetch("http://localhost:5000/module/getAll", {
       method: "POST",
@@ -48,10 +50,10 @@ const GraphState = (props) => {
       setTmot(retomt(d));
       setRpm(rerpm(d));
       setTesc(retesc(d));
-      setTime(retime(d));
-      setData(newObj(d,id));
+      // setTime(retime(d));
+      setData(newObj(d, id));
+      setTime(maketime(d));
     }
-    console.log(data);
   };
   return (
     <GraphContext.Provider

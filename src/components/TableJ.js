@@ -13,11 +13,11 @@ const TableJ = () => {
   }, []);
   return (
     <div>
-      <Stack spacing={2} direction="row">
+      {/* <Stack spacing={2} direction="row">
         <Button style={{fontSize:"15px",border:"2px solid blue", margin:"5px"}}>
           <Link to="/" style={{color:"blue"}}>Home</Link>
         </Button>
-      </Stack>
+      </Stack> */}
       {/* <TableItem2/> */}
       <TableItem3/>
     </div>
