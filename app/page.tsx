@@ -1,10 +1,10 @@
 "use client"
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import {
   BarChart2, Package, ShoppingCart, Users,
   ArrowUpRight, ArrowDownRight, Settings,
-  Menu, X, ChevronDown
+  Menu, X
 } from 'lucide-react';
 import {
   LineChart, Line, PieChart, Pie, BarChart, Bar,
@@ -12,25 +12,23 @@ import {
   ResponsiveContainer, Cell
 } from 'recharts';
 import { CardComponent2 } from '@/components/CardComponents2';
+import { useMediaQuery } from '@/components/hooks/useMediaQuery';
+// import { useMediaQuery } from '@/hooks/useMediaQuery'./; // We'll create this custom hook
 
-export default function Home() {
-  const [selectedPeriod, setSelectedPeriod] = useState('month');
-  const [isMobile, setIsMobile] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [activeChart, setActiveChart] = useState('all');
 
-  // Responsive handler
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
 
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+export default function Dashboard() {
+  const [mounted, isMobile] = useMediaQuery('(max-width: 768px)');
+  const [selectedPeriod, setSelectedPeriod] = React.useState('month');
+  const [sidebarOpen, setSidebarOpen] = React.useState(false);
+  const [activeChart, setActiveChart] = React.useState('all');
 
-  // Stats data
+  // Don't render anything until mounted
+  if (!mounted) {
+    return null;
+  }
+
+  // Stats data (moved inside component but outside render)
   const stats = [
     {
       title: "Total Revenue",
@@ -62,7 +60,7 @@ export default function Home() {
     }
   ];
 
-  // Chart data
+  // Chart data (moved inside component but outside render)
   const revenueData = [
     { month: 'Jan', revenue: 65000, users: 1200 },
     { month: 'Feb', revenue: 72000, users: 1350 },
@@ -94,7 +92,11 @@ export default function Home() {
   const MobileHeader = () => (
     <div className="fixed top-0 left-0 right-0 bg-white z-50 border-b">
       <div className="flex justify-between items-center p-4">
-        <button onClick={() => setSidebarOpen(true)}>
+        <button 
+          type="button" 
+          onClick={() => setSidebarOpen(true)}
+          aria-label="Open menu"
+        >
           <Menu className="h-6 w-6" />
         </button>
         <h1 className="text-lg font-bold">Dashboard</h1>
@@ -104,13 +106,23 @@ export default function Home() {
   );
 
   const MobileSidebar = () => (
-    <div className={`fixed inset-0 bg-black bg-opacity-50 z-50 transition-opacity ${sidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-      }`}>
-      <div className={`absolute top-0 left-0 bottom-0 w-64 bg-white transform transition-transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}>
+    <div 
+      className={`fixed inset-0 bg-black bg-opacity-50 z-50 transition-opacity ${
+        sidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+      }`}
+    >
+      <div 
+        className={`absolute top-0 left-0 bottom-0 w-64 bg-white transform transition-transform ${
+          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
         <div className="p-4 border-b flex justify-between items-center">
           <h2 className="font-bold">Menu</h2>
-          <button onClick={() => setSidebarOpen(false)}>
+          <button 
+            type="button"
+            onClick={() => setSidebarOpen(false)}
+            aria-label="Close menu"
+          >
             <X className="h-6 w-6" />
           </button>
         </div>
@@ -125,27 +137,18 @@ export default function Home() {
             <option value="year">This Year</option>
           </select>
           <div className="space-y-2">
-            <button
-              className={`w-full p-2 rounded text-left ${activeChart === 'all' ? 'bg-blue-50 text-blue-600' : ''
+            {['all', 'revenue', 'sales'].map((chart) => (
+              <button
+                key={chart}
+                type="button"
+                className={`w-full p-2 rounded text-left ${
+                  activeChart === chart ? 'bg-blue-50 text-blue-600' : ''
                 }`}
-              onClick={() => setActiveChart('all')}
-            >
-              All Charts
-            </button>
-            <button
-              className={`w-full p-2 rounded text-left ${activeChart === 'revenue' ? 'bg-blue-50 text-blue-600' : ''
-                }`}
-              onClick={() => setActiveChart('revenue')}
-            >
-              Revenue Trend
-            </button>
-            <button
-              className={`w-full p-2 rounded text-left ${activeChart === 'sales' ? 'bg-blue-50 text-blue-600' : ''
-                }`}
-              onClick={() => setActiveChart('sales')}
-            >
-              Sales Distribution
-            </button>
+                onClick={() => setActiveChart(chart)}
+              >
+                {chart.charAt(0).toUpperCase() + chart.slice(1)} Charts
+              </button>
+            ))}
           </div>
         </div>
       </div>
@@ -162,7 +165,7 @@ export default function Home() {
         </CardHeader>
         <CardContent>
           <div className={`h-${isMobile ? '60' : '80'}`}>
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height={isMobile ? 240 : 320}>
               {children}
             </ResponsiveContainer>
           </div>
@@ -191,7 +194,11 @@ export default function Home() {
                 <option value="month">This Month</option>
                 <option value="year">This Year</option>
               </select>
-              <button className="p-2 rounded bg-white border">
+              <button 
+                type="button"
+                className="p-2 rounded bg-white border"
+                aria-label="Settings"
+              >
                 <Settings className="h-5 w-5 text-gray-600" />
               </button>
             </div>
@@ -216,8 +223,11 @@ export default function Home() {
                   ) : (
                     <ArrowDownRight className="h-4 w-4 text-red-500" />
                   )}
-                  <span className={`text-sm ${stat.trend === 'up' ? 'text-green-500' : 'text-red-500'
-                    }`}>
+                  <span 
+                    className={`text-sm ${
+                      stat.trend === 'up' ? 'text-green-500' : 'text-red-500'
+                    }`}
+                  >
                     {stat.increase}
                   </span>
                 </div>
@@ -225,31 +235,30 @@ export default function Home() {
             </Card>
           ))}
         </div>
+
         {/* Charts Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4">
-          <ResponsiveContainer width="100%" height="100%">
-            <ChartContainer title="Revenue Trend" type="revenue">
-              <LineChart data={revenueData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="month" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Line
-                  type="monotone"
-                  dataKey="revenue"
-                  stroke="#8884d8"
-                  strokeWidth={2}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="users"
-                  stroke="#82ca9d"
-                  strokeWidth={2}
-                />
-              </LineChart>
-            </ChartContainer>
-          </ResponsiveContainer>
+          <ChartContainer title="Revenue Trend" type="revenue">
+            <LineChart data={revenueData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="month" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Line
+                type="monotone"
+                dataKey="revenue"
+                stroke="#8884d8"
+                strokeWidth={2}
+              />
+              <Line
+                type="monotone"
+                dataKey="users"
+                stroke="#82ca9d"
+                strokeWidth={2}
+              />
+            </LineChart>
+          </ChartContainer>
 
           <ChartContainer title="Sales Distribution" type="sales">
             <PieChart>
@@ -263,7 +272,10 @@ export default function Home() {
                 dataKey="value"
               >
                 {salesDistribution.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                  <Cell 
+                    key={`cell-${index}`} 
+                    fill={COLORS[index % COLORS.length]} 
+                  />
                 ))}
               </Pie>
               <Tooltip />
@@ -282,10 +294,12 @@ export default function Home() {
               <Bar dataKey="previous" fill="#82ca9d" name="Previous Year" />
             </BarChart>
           </ChartContainer>
-        </div>
-        <div className='w-[450px]'>
           <CardComponent2 />
         </div>
+
+        <div className="w-[450px] p-4">
+        </div>
       </div>
-    </div>);
+    </div>
+  );
 }
