@@ -14,9 +14,6 @@ import {
 import { CardComponent2 } from '@/components/CardComponents2';
 import { useMediaQuery } from '@/components/hooks/useMediaQuery';
 // import { useMediaQuery } from '@/hooks/useMediaQuery'./; // We'll create this custom hook
-
-
-
 export default function Dashboard() {
   const [mounted, isMobile] = useMediaQuery('(max-width: 768px)');
   const [selectedPeriod, setSelectedPeriod] = React.useState('month');
