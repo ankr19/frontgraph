@@ -1,6 +1,4 @@
 "use client"
-
-import { TrendingUp } from "lucide-react"
 import {
     Label,
     PolarGrid,
@@ -22,6 +20,11 @@ const chartData = [
     { browser: "safari", visitors: 400, fill: "var(--color-safari)" },
 ]
 
+export type CardsProps = {
+    ticketname: string,
+    ticketno: number,
+}
+
 const chartConfig = {
     visitors: {
         label: "Visitors",
@@ -32,12 +35,12 @@ const chartConfig = {
     },
 } satisfies ChartConfig
 
-export function CardComponent2() {
+export function CardComponent2({ticketname, ticketno} : CardsProps) {
     return (
         <Card className="flex flex-col">
             <CardHeader className="items-center pb-0">
-                <CardTitle>Radial Chart - Text</CardTitle>
-                <CardDescription>January - June 2024</CardDescription>
+                <CardTitle></CardTitle>
+                <CardDescription></CardDescription>
             </CardHeader>
             <CardContent className="flex-1 pb-0">
                 <ChartContainer
@@ -75,14 +78,14 @@ export function CardComponent2() {
                                                     y={viewBox.cy}
                                                     className="fill-foreground text-4xl font-bold"
                                                 >
-                                                    {chartData[0].visitors.toLocaleString()}
+                                                    {ticketno}
                                                 </tspan>
                                                 <tspan
                                                     x={viewBox.cx}
                                                     y={(viewBox.cy || 0) + 24}
                                                     className="fill-muted-foreground"
                                                 >
-                                                    Visitors
+                                                    Tickets
                                                 </tspan>
                                             </text>
                                         )
@@ -94,12 +97,12 @@ export function CardComponent2() {
                 </ChartContainer>
             </CardContent>
             <CardFooter className="flex-col gap-2 text-sm">
-                <div className="flex items-center gap-2 font-medium leading-none">
-                    Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+                <div className="flex items-center gap-2 mt-2 font-sans font-semibold leading-none">
+                    {ticketname}
                 </div>
-                <div className="leading-none text-muted-foreground">
+                {/* <div className="leading-none text-muted-foreground">
                     Showing total visitors for the last 6 months
-                </div>
+                </div> */}
             </CardFooter>
         </Card>
     )
